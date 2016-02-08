@@ -14,6 +14,7 @@ public class Inventory {
             int i = 1;
             for (InventoryItem item : inv) {
                 System.out.println(i + ". [" + item.itemQuantity + "] " + item.itemName);
+                i++;
             }
 
             System.out.println("Options:");
