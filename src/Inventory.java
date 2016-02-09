@@ -15,7 +15,7 @@ public class Inventory {
 
             int i = 1;
             for (InventoryItem item : inv) {
-                System.out.printf("%d. [%i] %s (%s)\n", i, item.itemQuantity, item.itemName, item.itemCategory);
+                System.out.printf("%d. [%d] %s (%s)\n", i, item.itemQuantity, item.itemName, item.itemCategory);
                 i++;
             }
 
