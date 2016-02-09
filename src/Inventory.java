@@ -5,15 +5,17 @@ import java.util.Scanner;
  * Created by MacLap on 2/8/16.
  */
 public class Inventory {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         ArrayList<InventoryItem> inv = new ArrayList<>();
         Scanner scanner= new Scanner(System.in);
+
+
 
         while (true) {
 
             int i = 1;
             for (InventoryItem item : inv) {
-                System.out.println(i + ". [" + item.itemQuantity + "] " + item.itemName);
+                System.out.printf("%d. [%i] %s (%s)\n", i, item.itemQuantity, item.itemName, item.itemCategory);
                 i++;
             }
 
@@ -31,7 +33,10 @@ public class Inventory {
                 System.out.println("Enter the quantity.");
                 int num =Integer.valueOf(scanner.nextLine());
 
-                InventoryItem item = new InventoryItem(text, num);
+                System.out.println("Enter the item category.");
+                String category = scanner.nextLine();
+
+                InventoryItem item = createItem(text, num, category);
                 inv.add(item);
             }
 
@@ -57,6 +62,34 @@ public class Inventory {
             else{
                 System.out.println("Invalid Option.");
             }
+        }
+    }
+
+    public static InventoryItem createItem(String iName, int iQuant, String iCategory) throws Exception {
+
+
+        if(iCategory.equalsIgnoreCase("Consumable")){
+           return new Consumable(iName, iQuant);
+        }
+
+        else if(iCategory.equalsIgnoreCase("Hat")){
+            return new Hat(iName, iQuant);
+        }
+
+        else if(iCategory.equalsIgnoreCase("Chest")){
+            return new Chest(iName, iQuant);
+        }
+
+        else if(iCategory.equalsIgnoreCase("Pants")){
+            return new Pants(iName, iQuant);
+        }
+
+        else if(iCategory.equalsIgnoreCase("shoe")){
+            return new Shoe(iName, iQuant);
+        }
+
+        else{
+            throw new Exception("Invalid Category");
         }
     }
 }
